@@ -184,7 +184,8 @@ export const SITE = {
   tagline: "Justice. Integrity. Excellence.",
   description:
     "Providing trusted legal expertise, strategic representation, and professional guidance with integrity and excellence.",
-  email: "counsel@mla-advocates.com",
-  phone: "+92 300 000 0000",
-  address: "Chambers 14, Justice Avenue",
+  email: "oopsy32@gmail.com",
+  phone: "+923343400292",
+  linkedin: "https://www.linkedin.com/in/mohsin-ali-abbasi-05017b211/",
+  linkedinName: "Mohsin (Abbasi) Ali",
 } as const;

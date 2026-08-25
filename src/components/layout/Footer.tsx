@@ -1,14 +1,50 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 import { FOOTER_LINKS, SITE } from "@/lib/content";
 import { Reveal } from "@/components/ui/Reveal";
 
-/** Brand marks are not part of lucide v1, so they are drawn here. */
+/** lucide v1 dropped brand marks, so the LinkedIn glyph is drawn here. */
+function LinkedinIcon({
+  size = 15,
+  strokeWidth = 1.4,
+  className,
+}: {
+  size?: number;
+  strokeWidth?: number;
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3" />
+      <path d="M8 10.5V17" />
+      <path d="M8 7.4v.1" />
+      <path d="M12.2 17v-3.7a2.6 2.6 0 0 1 5.2 0V17" />
+    </svg>
+  );
+}
+
+const CONTACT = [
+  { icon: Mail, value: SITE.email, href: `mailto:${SITE.email}` },
+  { icon: Phone, value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
+  { icon: LinkedinIcon, value: SITE.linkedinName, href: SITE.linkedin },
+];
+
 const SOCIALS = [
   {
     label: "LinkedIn",
-    href: "#",
+    href: SITE.linkedin,
     glyph: (
       <>
         <rect x="3.5" y="3.5" width="17" height="17" rx="3" />
@@ -41,11 +77,15 @@ const SOCIALS = [
   },
 ];
 
-const CONTACT = [
-  { icon: Mail, value: SITE.email, href: `mailto:${SITE.email}` },
-  { icon: Phone, value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
-  { icon: MapPin, value: SITE.address, href: null },
-];
+/** Only real web links leave the site; mailto and tel must stay in the tab. */
+const isExternal = (href: string) => href.startsWith("http");
+
+/** Shared gold rule that sweeps in from the left on hover. */
+function Underline() {
+  return (
+    <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--gold)] transition-transform duration-500 ease-[var(--ease-lux)] group-hover:scale-x-100" />
+  );
+}
 
 export function Footer() {
   return (
@@ -79,9 +119,11 @@ export function Footer() {
             <ul className="mt-8 flex items-center gap-3">
               {SOCIALS.map((social) => (
                 <li key={social.label}>
-                  <a
+                  <Link
                     href={social.href}
                     aria-label={social.label}
+                    target={isExternal(social.href) ? "_blank" : undefined}
+                    rel={isExternal(social.href) ? "noopener noreferrer" : undefined}
                     className="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-colors duration-500 hover:border-[var(--gold)] hover:text-[var(--gold)]"
                   >
                     <svg
@@ -96,7 +138,7 @@ export function Footer() {
                     >
                       {social.glyph}
                     </svg>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -114,7 +156,7 @@ export function Footer() {
                     >
                       <span className="relative">
                         {link.label}
-                        <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--gold)] transition-transform duration-500 ease-[var(--ease-lux)] group-hover:scale-x-100" />
+                        <Underline />
                       </span>
                     </Link>
                   ) : (
@@ -132,7 +174,7 @@ export function Footer() {
           </Reveal>
 
           <Reveal delay={0.14}>
-            <h3 className="eyebrow text-muted">Chambers</h3>
+            <h3 className="eyebrow text-muted">Contact</h3>
             <ul className="mt-6 flex flex-col gap-4">
               {CONTACT.map(({ icon: Icon, value, href }) => (
                 <li key={value} className="flex items-start gap-3 text-[0.9rem] text-muted">
@@ -141,13 +183,17 @@ export function Footer() {
                     strokeWidth={1.4}
                     className="mt-0.5 shrink-0 text-[var(--gold)]"
                   />
-                  {href ? (
-                    <a href={href} className="transition-colors duration-400 hover:text-ink">
+                  <Link
+                    href={href}
+                    target={isExternal(href) ? "_blank" : undefined}
+                    rel={isExternal(href) ? "noopener noreferrer" : undefined}
+                    className="group inline-flex items-center transition-colors duration-400 hover:text-ink"
+                  >
+                    <span className="relative">
                       {value}
-                    </a>
-                  ) : (
-                    <span>{value}</span>
-                  )}
+                      <Underline />
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
