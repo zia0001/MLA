@@ -7,7 +7,7 @@ import { useLenis } from "lenis/react";
 
 import { NAV_ITEMS, SITE, type NavItem } from "@/lib/content";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+// import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -138,7 +138,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <MagneticButton
               href="#consult"
               className="hidden md:inline-flex"
