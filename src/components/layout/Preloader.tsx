@@ -11,6 +11,7 @@ import { SITE } from "@/lib/content";
 const EASE = [0.16, 1, 0.3, 1] as const;
 /** Total curtain time. Anything longer reads as a slow site, not a premium one. */
 const HOLD_MS = 1250;
+let hasShownSplashThisLoad = false;
 
 /**
  * Curtain intro: the wordmark assembles in 3D, a gold rule draws under it, then
@@ -20,10 +21,18 @@ const HOLD_MS = 1250;
 export function Preloader() {
   const reduced = usePrefersReducedMotion();
   const mounted = useMounted();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(!hasShownSplashThisLoad);
 
   useEffect(() => {
     if (!mounted) return;
+    if (hasShownSplashThisLoad) {
+      setOpen(false);
+      introStore.markReady();
+      return;
+    }
+
+    hasShownSplashThisLoad = true;
+
     // Reduced motion still schedules rather than setting state inline, so the
     // curtain always leaves through the same code path.
     const timer = window.setTimeout(

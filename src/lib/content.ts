@@ -15,7 +15,7 @@ export type NavItem = {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/", ready: true },
-  { label: "About", href: "/about", ready: false },
+  { label: "About", href: "/about", ready: true },
   { label: "Team", href: "/team", ready: false },
   { label: "Portfolio", href: "/portfolio", ready: false },
   { label: "Library", href: "/library", ready: false },
@@ -26,7 +26,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const FOOTER_LINKS: NavItem[] = [
-  { label: "About", href: "/about", ready: false },
+  { label: "About", href: "/about", ready: true },
   { label: "Team", href: "/team", ready: false },
   { label: "Services", href: "#expertise", ready: true },
   { label: "Portfolio", href: "/portfolio", ready: false },
