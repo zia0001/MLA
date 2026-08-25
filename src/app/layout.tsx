@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Inter, Libre_Baskerville } from "next/font/google";
 
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
 import { SITE } from "@/lib/content";
 
-const display = Cormorant_Garamond({
+const display = Libre_Baskerville({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700"],
   variable: "--font-display",
   display: "swap",
 });

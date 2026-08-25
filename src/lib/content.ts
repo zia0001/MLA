@@ -22,7 +22,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Gallery", href: "/gallery", ready: false },
   { label: "Blogs", href: "/blogs", ready: false },
   { label: "FAQ", href: "/faq", ready: false },
-  { label: "Contact", href: "/contact", ready: false },
+  { label: "Contact", href: "/contact", ready: true },
 ];
 
 export const FOOTER_LINKS: NavItem[] = [
@@ -31,7 +31,7 @@ export const FOOTER_LINKS: NavItem[] = [
   { label: "Services", href: "#expertise", ready: true },
   { label: "Portfolio", href: "/portfolio", ready: false },
   { label: "Blogs", href: "/blogs", ready: false },
-  { label: "Contact", href: "/contact", ready: false },
+  { label: "Contact", href: "/contact", ready: true },
 ];
 
 export type PracticeArea = {
