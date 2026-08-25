@@ -89,6 +89,27 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
+/* Gold pointer — desktop only; touch devices have no cursor to replace. */
+@media (min-width: 1024px) and (pointer: fine) {
+  html,
+  body,
+  * {
+    cursor: url("/cursor-gold.png") 2 2, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  [data-cursor="hover"] {
+    cursor: url("/cursor-gold.png") 2 2, pointer;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+}
 
 /* Lenis drives scroll itself; native smooth behaviour fights it. */
 html.lenis,
