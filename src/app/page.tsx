@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { ArrowUp } from "lucide-react";
+
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Preloader } from "@/components/layout/Preloader";
@@ -17,6 +22,18 @@ import { ScrollProgress } from "@/components/ui/ScrollProgress";
  * added later without touching this composition.
  */
 export default function HomePage() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowBackToTop(window.scrollY > 80);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       <Preloader />
@@ -33,6 +50,17 @@ export default function HomePage() {
         <TeamPreview />
         <FinalCTA />
       </main>
+
+      {showBackToTop && (
+        <button
+          type="button"
+          aria-label="Back to top"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-5 right-5 z-50 grid h-12 w-12 place-items-center rounded-full border border-[var(--gold)] bg-[var(--bg-elev)] text-[var(--ink-strong)] shadow-[var(--shadow-soft)] transition-transform duration-300 hover:scale-105"
+        >
+          <ArrowUp size={18} />
+        </button>
+      )}
 
       <Footer />
     </>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { ReactLenis, useLenis } from "lenis/react";
 
 import { usePrefersReducedMotion } from "@/hooks/useMediaQuery";
@@ -37,6 +38,7 @@ function useAnchorInterception(scrollTo?: (el: HTMLElement) => void) {
 
 /** Publishes Lenis' scroll telemetry to the singleton the 3D scene reads. */
 function LenisBridge() {
+  const pathname = usePathname();
   const lenis = useLenis((instance) =>
     writeScrollState({
       progress: instance.progress,
@@ -44,6 +46,23 @@ function LenisBridge() {
       velocity: instance.velocity,
     }),
   );
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      const previous = window.history.scrollRestoration;
+      window.history.scrollRestoration = "manual";
+      return () => {
+        window.history.scrollRestoration = previous;
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true, force: true });
+    }
+  }, [lenis, pathname]);
 
   useAnchorInterception(
     lenis
@@ -57,6 +76,22 @@ function LenisBridge() {
 
 /** Reduced-motion path: no inertia, but the 3D scene still needs telemetry. */
 function NativeScrollBridge() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      const previous = window.history.scrollRestoration;
+      window.history.scrollRestoration = "manual";
+      return () => {
+        window.history.scrollRestoration = previous;
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [pathname]);
+
   useEffect(() => {
     const sync = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
