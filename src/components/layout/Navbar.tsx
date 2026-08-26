@@ -1,8 +1,9 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useLenis } from "lenis/react";
 
 import { NAV_ITEMS, SITE, type NavItem } from "@/lib/content";
@@ -91,7 +92,17 @@ function Hamburger({ open, onToggle }: { open: boolean; onToggle: () => void }) 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const portalTarget = typeof window === "undefined" ? null : document.body;
   const lenis = useLenis();
+
+  const toggleMobileMenu = () => {
+    if (open) {
+      setOpen(false);
+      return;
+    }
+
+    window.requestAnimationFrame(() => setOpen(true));
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -114,6 +125,69 @@ export function Navbar() {
       window.removeEventListener("keydown", onKey);
     };
   }, [open, lenis]);
+
+  const mobileMenu = open ? (
+    <motion.div
+      key="mobile-menu"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45, ease: EASE }}
+      className="fixed inset-0 z-[120] bg-[var(--bg-deep)]/97 backdrop-blur-2xl lg:hidden"
+      style={{ pointerEvents: "auto" }}
+    >
+      <div className="grain pointer-events-none absolute inset-0" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 right-0 h-96 w-96 rounded-full blur-[110px]"
+        style={{
+          background:
+            "radial-gradient(circle, color-mix(in oklab, var(--gold) 26%, transparent), transparent 70%)",
+        }}
+      />
+      <div className="shell flex h-full flex-col justify-center pb-16 pt-24">
+        <ul className="flex flex-col gap-1">
+          {NAV_ITEMS.map((item, i) => (
+            <motion.li
+              key={item.href}
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.6, delay: 0.06 * i + 0.1, ease: EASE }}
+              className="border-b border-line/60"
+            >
+              {item.ready ? (
+                <Link
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-baseline justify-between py-4 font-display text-2xl text-ink-strong touch-manipulation"
+                >
+                  {item.label}
+                  <span className="eyebrow text-[0.6rem] text-[var(--gold)]">0{i + 1}</span>
+                </Link>
+              ) : (
+                <span className="flex items-baseline justify-between py-4 font-display text-2xl text-muted">
+                  {item.label}
+                  <span className="eyebrow text-[0.6rem] text-muted/70">soon</span>
+                </span>
+              )}
+            </motion.li>
+          ))}
+        </ul>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.66, ease: EASE }}
+          className="mt-10"
+        >
+          <MagneticButton href="#consult" onClick={() => setOpen(false)}>
+            Book a Consultation
+          </MagneticButton>
+        </motion.div>
+      </div>
+    </motion.div>
+  ) : null;
 
   return (
     <>
@@ -146,76 +220,12 @@ export function Navbar() {
             >
               Consultation
             </MagneticButton>
-            <Hamburger open={open} onToggle={() => setOpen((v) => !v)} />
+            <Hamburger open={open} onToggle={toggleMobileMenu} />
           </div>
         </nav>
       </motion.header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, ease: EASE }}
-            className="fixed inset-0 z-[55] bg-[var(--bg-deep)]/97 backdrop-blur-2xl lg:hidden"
-          >
-            <div className="grain absolute inset-0" />
-            <div
-              aria-hidden
-              className="absolute -top-24 right-0 h-96 w-96 rounded-full blur-[110px]"
-              style={{
-                background:
-                  "radial-gradient(circle, color-mix(in oklab, var(--gold) 26%, transparent), transparent 70%)",
-              }}
-            />
-            <div className="shell flex h-full flex-col justify-center pb-16 pt-24">
-              <ul className="flex flex-col gap-1">
-                {NAV_ITEMS.map((item, i) => (
-                  <motion.li
-                    key={item.href}
-                    initial={{ opacity: 0, y: 26 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.6, delay: 0.06 * i + 0.1, ease: EASE }}
-                    className="border-b border-line/60"
-                  >
-                    {item.ready ? (
-                      <Link
-                        href={item.href}
-                        onClick={() => setOpen(false)}
-                        className="flex items-baseline justify-between py-4 font-display text-2xl text-ink-strong"
-                      >
-                        {item.label}
-                        <span className="eyebrow text-[0.6rem] text-[var(--gold)]">
-                          0{i + 1}
-                        </span>
-                      </Link>
-                    ) : (
-                      <span className="flex items-baseline justify-between py-4 font-display text-2xl text-muted">
-                        {item.label}
-                        <span className="eyebrow text-[0.6rem] text-muted/70">soon</span>
-                      </span>
-                    )}
-                  </motion.li>
-                ))}
-              </ul>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.66, ease: EASE }}
-                className="mt-10"
-              >
-                <MagneticButton href="#consult" onClick={() => setOpen(false)}>
-                  Book a Consultation
-                </MagneticButton>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && portalTarget ? createPortal(mobileMenu, portalTarget) : mobileMenu}
     </>
   );
 }
