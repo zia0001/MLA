@@ -38,7 +38,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-[36svh] pt-32 sm:pb-[32svh] lg:pb-0 lg:pt-24"
+      className="relative isolate flex min-h-[100svh] items-start overflow-hidden pb-[20svh] pt-24 sm:pb-[18svh] sm:pt-28 lg:items-center lg:pb-0 lg:pt-24"
     >
       <HeroStage />
 
@@ -62,19 +62,21 @@ export function Hero() {
             stagger={0.13}
             text="Justice. Integrity. Excellence."
             accent={["Excellence."]}
-            className="display-xl display-3d mt-7 max-w-[13ch] uppercase text-ink-strong"
+            className="display-xl display-3d mt-6 max-w-[13ch] uppercase text-ink-strong sm:mt-7"
           />
 
           <motion.p
             {...rise(0.95)}
-            className="mt-8 max-w-xl text-[1.02rem] leading-[1.85] text-muted"
+            className="mt-6 max-w-xl text-base leading-7 text-muted sm:mt-8 sm:text-[1.02rem] sm:leading-[1.85]"
           >
             {SITE.description}
           </motion.p>
 
-          <motion.div {...rise(1.15)} className="mt-11 flex flex-wrap items-center gap-4">
-            <MagneticButton href="#expertise">Explore Our Expertise</MagneticButton>
-            <MagneticButton href="#consult" variant="outline">
+          <motion.div {...rise(1.15)} className="mt-8 flex flex-wrap items-center gap-3 sm:mt-11 sm:gap-4">
+            <MagneticButton href="#expertise" className="!px-5 !py-3 sm:!px-7 sm:!py-3.5">
+              Explore Our Expertise
+            </MagneticButton>
+            <MagneticButton href="#consult" variant="outline" className="!px-5 !py-3 sm:!px-7 sm:!py-3.5">
               Contact Us
             </MagneticButton>
           </motion.div>
@@ -82,15 +84,15 @@ export function Hero() {
           {/* Quiet proof line — credibility before the visitor scrolls at all. */}
           <motion.dl
             {...rise(1.4)}
-            className="mt-14 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-line pt-7"
+            className="mt-9 grid grid-cols-3 gap-3 border-t border-line pt-5 sm:mt-14 sm:flex sm:flex-wrap sm:items-center sm:gap-x-10 sm:gap-y-4 sm:pt-7"
           >
             {STATS.slice(0, 3).map((stat) => (
-              <div key={stat.id} className="flex items-baseline gap-2.5">
-                <dt className="font-display text-xl text-[var(--gold)]">
+              <div key={stat.id} className="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2.5">
+                <dt className="font-display text-lg text-[var(--gold)] sm:text-xl">
                   {stat.value}
                   {stat.suffix}
                 </dt>
-                <dd className="text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+                <dd className="text-[0.56rem] uppercase leading-tight tracking-[0.12em] text-muted sm:text-[0.7rem] sm:tracking-[0.18em]">
                   {stat.label.replace("Years of ", "Years ")}
                 </dd>
               </div>
