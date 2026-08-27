@@ -1,7 +1,6 @@
-import Link from "next/link";
-
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
@@ -249,25 +248,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="shell !mx-auto mt-20 w-full max-w-[76rem] sm:mt-24 md:mt-32">
-          <div className="relative overflow-hidden rounded-[1.5rem] border border-[var(--gold)]/25 bg-[var(--bg-deep)] px-5 py-10 text-center sm:rounded-[2rem] sm:px-6 sm:py-12 md:px-10">
-            <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--gold)]/12 blur-[100px]" />
-            <div className="relative">
-              <h2 className="font-display text-3xl leading-tight text-ink-strong sm:text-4xl">
-                Discuss your case with us.
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-muted md:text-lg">
-                Strategic, practical legal guidance for complex disputes and consequential decisions.
-              </p>
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--gold)] px-5 py-3 text-center text-xs font-medium uppercase tracking-[0.18em] text-black transition-transform duration-300 hover:scale-[1.03] sm:px-6 sm:tracking-[0.22em] motion-reduce:transition-none motion-reduce:hover:scale-100"
-              >
-                Book a Consultation
-              </Link>
-            </div>
-          </div>
-        </section>
+        <FinalCTA />
       </main>
 
       <Footer />

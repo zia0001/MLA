@@ -181,7 +181,7 @@ export function Navbar() {
           transition={{ duration: 0.6, delay: 0.66, ease: EASE }}
           className="mt-10"
         >
-          <MagneticButton href="#consult" onClick={() => setOpen(false)}>
+          <MagneticButton href="/contact" onClick={() => setOpen(false)}>
             Book a Consultation
           </MagneticButton>
         </motion.div>
@@ -214,7 +214,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {/* <ThemeToggle /> */}
             <MagneticButton
-              href="#consult"
+              href="/contact"
               className="hidden md:inline-flex"
               strength={0.22}
             >

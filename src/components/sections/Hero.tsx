@@ -76,7 +76,7 @@ export function Hero() {
             <MagneticButton href="#expertise" className="!px-5 !py-3 sm:!px-7 sm:!py-3.5">
               Explore Our Expertise
             </MagneticButton>
-            <MagneticButton href="#consult" variant="outline" className="!px-5 !py-3 sm:!px-7 sm:!py-3.5">
+            <MagneticButton href="/contact" variant="outline" className="!px-5 !py-3 sm:!px-7 sm:!py-3.5">
               Contact Us
             </MagneticButton>
           </motion.div>

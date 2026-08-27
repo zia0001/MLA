@@ -11,7 +11,6 @@ import { IntroSection } from "@/components/sections/IntroSection";
 import { PracticeAreas } from "@/components/sections/PracticeAreas";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Statistics } from "@/components/sections/Statistics";
-import { FinalCTA } from "@/components/sections/FinalCTA";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
@@ -46,7 +45,6 @@ export default function HomePage() {
         <PracticeAreas />
         <WhyChooseUs />
         <Statistics />
-        <FinalCTA />
       </main>
 
       {showBackToTop && (

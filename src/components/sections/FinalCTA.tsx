@@ -48,7 +48,6 @@ export function FinalCTA() {
             <AnimatedText
               variant="mask"
               text="Your Case Deserves the Right Legal Strategy."
-              accent={["Strategy."]}
               className="display-lg mx-auto mt-7 max-w-4xl text-balance text-ink-strong"
             />
 
@@ -57,7 +56,7 @@ export function FinalCTA() {
             </Reveal>
 
             <Reveal delay={0.2} className="mt-12 flex flex-col items-center gap-6">
-              <MagneticButton href="#consult" strength={0.35}>
+              <MagneticButton href="/contact" strength={0.35}>
                 Schedule a Consultation
               </MagneticButton>
               <a
