@@ -2,26 +2,9 @@ import Link from "next/link";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { ConsultForm } from "@/components/ui/ConsultForm";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
-
-const contactDetails = [
-  {
-    title: "Email",
-    value: "oopsy32@gmail.com",
-    href: "mailto:oopsy32@gmail.com",
-  },
-  {
-    title: "Phone",
-    value: "+923343400292",
-    href: "tel:+923343400292",
-  },
-  {
-    title: "LinkedIn",
-    value: "Mohsin (Abbasi) Ali",
-    href: "https://www.linkedin.com/in/mohsin-ali-abbasi-05017b211/",
-  },
-];
 
 export default function ContactPage() {
   return (
@@ -53,25 +36,11 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="w-full rounded-[1.5rem] border border-line bg-[var(--bg-elev)] p-4 sm:rounded-[2rem] sm:p-6 md:max-w-[28rem] lg:justify-self-end">
-              <div className="mb-4">
-                <p className="eyebrow text-[var(--gold)]">Consultation</p>
-              </div>
-
-              <div className="space-y-3">
-                {contactDetails.map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    className="block rounded-[1.25rem] border border-line bg-[var(--bg-deep)]/50 p-2.5 transition-colors duration-300 hover:border-[var(--gold)]/40 sm:p-3"
-                  >
-                    <div className="text-[0.7rem] uppercase tracking-[0.22em] text-muted">
-                      {item.title}
-                    </div>
-                    <div className="mt-1.5 break-words font-display text-lg leading-tight text-ink-strong sm:mt-2 sm:text-2xl">{item.value}</div>
-                  </a>
-                ))}
-              </div>
+            <div
+              id="consult-form"
+              className="w-full scroll-mt-28 md:max-w-[28rem] lg:justify-self-end"
+            >
+              <ConsultForm />
             </div>
           </div>
         </section>
@@ -121,7 +90,7 @@ export default function ContactPage() {
                 Strategic, practical legal guidance for complex disputes and consequential decisions.
               </p>
               <Link
-                href="mailto:oopsy32@gmail.com"
+                href="#consult-form"
                 className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--gold)] px-5 py-3 text-center text-xs font-medium uppercase tracking-[0.18em] text-black transition-transform duration-300 hover:scale-[1.03] sm:px-6 sm:tracking-[0.22em] motion-reduce:transition-none motion-reduce:hover:scale-100"
               >
                 Book a Consultation
