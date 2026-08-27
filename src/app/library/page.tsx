@@ -34,7 +34,7 @@ export default function LibraryPage() {
       <CursorGlow />
       <Navbar />
 
-      <main id="main" className="relative overflow-hidden pb-16 pt-20 sm:pb-20 sm:pt-28 lg:pt-24">
+      <main id="main" className="relative overflow-hidden pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pt-12">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[var(--gold)]/10 blur-[140px]" />
           <div className="absolute bottom-24 left-0 h-72 w-72 rounded-full bg-[var(--gold)]/8 blur-[120px]" />
@@ -69,8 +69,8 @@ export default function LibraryPage() {
           </div>
         </section>
 
-        <section className="shell !mx-auto mt-20 w-full max-w-[76rem] sm:mt-24 md:mt-28">
-          <div className="mb-8 flex items-end justify-between gap-5 sm:mb-10">
+        <section className="shell !mx-auto mt-10 w-full max-w-[76rem] sm:mt-12 md:mt-14">
+          <div className="mb-5 flex items-end justify-between gap-5 sm:mb-7">
             <div>
               <span className="eyebrow text-[var(--gold)]">Collection focus</span>
               <h2 className="mt-3 font-display text-3xl leading-tight text-ink-strong sm:text-4xl">
