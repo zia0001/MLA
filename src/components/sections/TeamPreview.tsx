@@ -58,22 +58,22 @@ export function TeamPreview() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-3 gap-2.5 sm:gap-5 md:gap-6">
           {TEAM_PREVIEW.map((advocate, i) => (
             <Reveal key={advocate.id} variant="depth" delay={i * 0.1}>
               <TiltCard intensity={8}>
-                <div className="transform-3d p-5">
+                <div className="transform-3d p-2.5 sm:p-4 md:p-5">
                   <CardLayer z={18} hoverZ={34}>
                     <Portrait advocate={advocate} />
                   </CardLayer>
-                  <CardLayer z={32} hoverZ={52} className="px-2 pb-2 pt-6">
-                    <h3 className="font-display text-[1.3rem] text-ink-strong">
+                  <CardLayer z={32} hoverZ={52} className="px-0.5 pb-0.5 pt-3 sm:px-1 sm:pt-4 md:px-2 md:pb-2 md:pt-6">
+                    <h3 className="font-display text-sm leading-tight text-ink-strong sm:text-lg md:text-[1.3rem]">
                       {advocate.name}
                     </h3>
-                    <p className="mt-1.5 text-[0.72rem] uppercase tracking-[0.2em] text-gold">
+                    <p className="mt-1.5 text-[0.55rem] uppercase leading-tight tracking-[0.1em] text-gold sm:text-[0.72rem] sm:tracking-[0.2em]">
                       {advocate.position}
                     </p>
-                    <p className="mt-3 text-[0.875rem] text-muted">{advocate.practice}</p>
+                    <p className="mt-2 text-[0.62rem] leading-4 text-muted sm:mt-3 sm:text-[0.875rem]">{advocate.practice}</p>
                   </CardLayer>
                 </div>
               </TiltCard>

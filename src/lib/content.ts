@@ -1,8 +1,8 @@
 /**
  * Single source of truth for landing-page copy and navigation.
  *
- * Routes for About / Team / Portfolio / Library / Gallery / Blogs / FAQ /
- * Contact are declared here but not yet implemented — the pages land later.
+ * Routes for About / Team / Portfolio / Gallery / Blogs / FAQ / Contact are
+ * declared here but not yet implemented — the pages land later.
  * Anything marked `ready: false` renders as a link that is visibly present but
  * flagged, so the nav does not silently 404 before those routes exist.
  */
@@ -18,7 +18,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "About", href: "/about", ready: true },
   { label: "Team", href: "/team", ready: false },
   { label: "Portfolio", href: "/portfolio", ready: false },
-  { label: "Library", href: "/library", ready: false },
+  { label: "Library", href: "/library", ready: true },
   { label: "Gallery", href: "/gallery", ready: false },
   { label: "Blogs", href: "/blogs", ready: false },
   { label: "FAQ", href: "/faq", ready: false },
@@ -29,6 +29,7 @@ export const FOOTER_LINKS: NavItem[] = [
   { label: "About", href: "/about", ready: true },
   { label: "Team", href: "/team", ready: false },
   { label: "Services", href: "#expertise", ready: true },
+  { label: "Library", href: "/library", ready: true },
   { label: "Portfolio", href: "/portfolio", ready: false },
   { label: "Blogs", href: "/blogs", ready: false },
   { label: "Contact", href: "/contact", ready: true },

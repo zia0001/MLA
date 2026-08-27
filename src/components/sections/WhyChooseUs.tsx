@@ -56,16 +56,16 @@ export function WhyChooseUs() {
           description="Four commitments that shape how every file is opened, argued, and closed."
         />
 
-        <ul ref={track} className="relative mt-20 flex flex-col gap-14 lg:gap-20">
+        <ul ref={track} className="relative mt-14 grid grid-cols-2 gap-2.5 sm:mt-16 sm:gap-5 lg:mt-20 lg:flex lg:flex-col lg:gap-20">
           {/* Spine */}
           <span
             aria-hidden
-            className="absolute bottom-0 left-[0.4375rem] top-0 w-px bg-line lg:left-1/2 lg:-translate-x-1/2"
+            className="absolute bottom-0 left-1/2 top-0 hidden w-px -translate-x-1/2 bg-line lg:block"
           />
           <motion.span
             aria-hidden
             style={{ scaleY: fill }}
-            className="absolute bottom-0 left-[0.4375rem] top-0 w-px origin-top bg-gradient-to-b from-[var(--gold-bright)] via-[var(--gold)] to-transparent lg:left-1/2 lg:-translate-x-1/2"
+            className="absolute bottom-0 left-1/2 top-0 hidden w-px -translate-x-1/2 origin-top bg-gradient-to-b from-[var(--gold-bright)] via-[var(--gold)] to-transparent lg:block"
           />
 
           {VALUES.map((value, i) => {
@@ -73,12 +73,12 @@ export function WhyChooseUs() {
             return (
               <li
                 key={value.id}
-                className="relative grid items-center gap-6 lg:grid-cols-2 lg:gap-16"
+                className="relative min-w-0 lg:grid lg:items-center lg:gap-16 lg:grid-cols-2"
               >
                 {/* Node */}
                 <span
                   aria-hidden
-                  className="absolute left-0 top-8 h-3.5 w-3.5 rotate-45 border border-[var(--gold)] bg-[var(--bg)] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2"
+                  className="absolute left-1/2 top-1/2 hidden h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-[var(--gold)] bg-[var(--bg)] lg:block"
                   style={{ boxShadow: "0 0 22px -4px var(--gold)" }}
                 />
 
@@ -86,29 +86,29 @@ export function WhyChooseUs() {
                   variant="depth"
                   distance={34}
                   className={cn(
-                    "pl-10 lg:pl-0",
+                    "min-w-0 lg:pl-0",
                     right ? "lg:col-start-2 lg:pl-14" : "lg:pr-14",
                   )}
                 >
                   <TiltCard intensity={6}>
-                    <div className="relative transform-3d p-8 lg:p-10">
+                    <div className="relative transform-3d p-3 sm:p-5 lg:p-10">
                       <CardLayer
                         z={8}
                         as="span"
-                        className="pointer-events-none absolute right-6 top-4 font-display text-6xl leading-none text-transparent opacity-60"
+                        className="pointer-events-none absolute right-3 top-2 font-display text-3xl leading-none text-transparent opacity-60 sm:right-5 sm:top-3 sm:text-5xl lg:right-6 lg:top-4 lg:text-6xl"
                       >
                         <span style={{ WebkitTextStroke: "1px var(--line-strong)" }}>
                           {value.index}
                         </span>
                       </CardLayer>
                       <CardLayer z={30} hoverZ={48}>
-                        <h3 className="font-display text-[1.6rem] text-ink-strong">
+                        <h3 className="font-display text-base leading-tight text-ink-strong sm:text-xl lg:text-[1.6rem]">
                           {value.title}
                         </h3>
-                        <span className="mt-4 block h-px w-10 bg-gold/70" />
+                        <span className="mt-3 block h-px w-7 bg-gold/70 sm:mt-4 sm:w-10" />
                       </CardLayer>
-                      <CardLayer z={16} className="mt-5">
-                        <p className="max-w-md text-[0.925rem] leading-[1.85] text-muted">
+                      <CardLayer z={16} className="mt-3 sm:mt-4 lg:mt-5">
+                        <p className="max-w-md text-[0.65rem] leading-4 text-muted sm:text-[0.925rem] sm:leading-[1.85]">
                           {value.description}
                         </p>
                       </CardLayer>
