@@ -22,6 +22,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Gallery", href: "/gallery", ready: false },
   { label: "Blogs", href: "/blogs", ready: false },
   { label: "FAQ", href: "/faq", ready: true },
+   { label: "Student", href: "/student", ready: true },
   { label: "Contact", href: "/contact", ready: true },
 ];
 
